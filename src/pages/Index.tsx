@@ -1,37 +1,42 @@
 
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, MessageSquare, Database } from 'lucide-react';
+import { ArrowRight, MessageSquare, Database, Brain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { FrendiLogo } from '@/components/FrendiLogo';
+import { Navbar } from '@/components/Navbar';
 
 const Index = () => {
   const navigate = useNavigate();
   
   return (
     <div className="min-h-screen flex flex-col">
+      <Navbar />
       <main className="flex-1 flex flex-col items-center justify-center p-6">
         <div className="w-full max-w-4xl animate-fade-in">
-          <div className="text-center space-y-4 mb-10">
-            <h1 className="text-5xl font-bold tracking-tight">
-              <span className="text-primary">Memory</span>Chat
+          <div className="text-center space-y-6 mb-12">
+            <FrendiLogo size="lg" className="mx-auto" />
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mt-6">
+              Chat your way to a smoother life
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Chat with your data. Upload documents, add text, and create a personalized knowledge base.
+              Unleash the power of conversation and transform your world with our AI-powered chatbots. 
+              Meet your new digital companions, ready to guide, support, and empower you.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-6 mt-8">
+          <div className="grid md:grid-cols-2 gap-6 mt-12">
             <FeatureCard
-              title="Chat Interface"
-              description="Interact with your knowledge base through a familiar chat interface"
-              icon={MessageSquare}
-              onClick={() => navigate('/chat')}
+              title="Personalize"
+              description="Chatbots will get to know you - thanks to our sharp-edge memory technology. That is why your experience gets better - one chat at a time."
+              icon={Brain}
+              onClick={() => navigate('/ingestion')}
             />
             <FeatureCard
-              title="Data Ingestion"
-              description="Upload files or add text to build your personalized knowledge base"
-              icon={Database}
-              onClick={() => navigate('/ingestion')}
+              title="Be efficient"
+              description="Open, select, chat - how could it be easier? We have been spending time, just to save yours."
+              icon={MessageSquare}
+              onClick={() => navigate('/chat')}
             />
           </div>
           
@@ -61,8 +66,8 @@ interface FeatureCardProps {
 const FeatureCard = ({ title, description, icon: Icon, onClick }: FeatureCardProps) => (
   <div 
     className={cn(
-      "group cursor-pointer neural-morphism rounded-xl p-6",
-      "transition-all duration-300 hover:-translate-y-1"
+      "group cursor-pointer border border-border rounded-xl p-6 bg-card",
+      "transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
     )}
     onClick={onClick}
   >

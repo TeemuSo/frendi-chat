@@ -28,9 +28,9 @@ const Ingestion = () => {
       <main className="flex-1">
         <div className="container animate-fade-in">
           <div className="py-6">
-            <h1 className="text-3xl font-bold mb-1">Knowledge Base</h1>
+            <h1 className="text-3xl font-bold mb-1">Memory Center</h1>
             <p className="text-muted-foreground">
-              Add text or upload files to build your personalized knowledge graph
+              Add text or upload files to build your personalized memory graph
             </p>
           </div>
           

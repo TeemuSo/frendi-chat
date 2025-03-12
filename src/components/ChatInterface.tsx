@@ -1,6 +1,6 @@
 
 import { useState, useRef, useEffect } from 'react';
-import { Send, User, Bot } from 'lucide-react';
+import { Send, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Message, Conversation } from '@/lib/types';
@@ -114,54 +114,52 @@ export function ChatInterface({ conversation, onUpdateConversation }: ChatInterf
             <div
               key={message.id}
               className={cn(
-                "flex gap-3 mx-auto max-w-3xl transition-opacity animate-slide-up",
-                message.role === 'assistant' ? "opacity-90" : "opacity-100"
+                "flex gap-3 transition-opacity animate-slide-up",
+                message.role === 'user' ? "justify-end" : "justify-start"
               )}
             >
-              <div className="flex-shrink-0 pt-1">
-                {message.role === 'user' ? (
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                    <User className="h-5 w-5 text-primary" />
-                  </div>
-                ) : (
-                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                    <Bot className="h-5 w-5 text-white" />
-                  </div>
-                )}
-              </div>
-              
-              <div className="flex-1 space-y-1">
-                <div className="flex items-center gap-2">
-                  <div className="font-medium">
-                    {message.role === 'user' ? 'You' : 'Assistant'}
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    {formatTimestamp(message.timestamp)}
-                  </div>
+              {message.role === 'assistant' && (
+                <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 self-end">
+                  <img 
+                    src="/lovable-uploads/9b64eb18-4ec7-4e76-835b-ea19155a6999.png" 
+                    className="w-full h-full object-cover"
+                    alt="Assistant avatar"
+                  />
                 </div>
-                
-                <div className={cn(
-                  "prose prose-sm max-w-none",
-                  message.role === 'assistant' ? "prose-p:leading-relaxed" : ""
-                )}>
+              )}
+              
+              <div className={cn(
+                message.role === 'user' ? "frendi-bubble-user" : "frendi-bubble-assistant"
+              )}>
+                <div className="prose prose-sm max-w-none">
                   {message.content}
                 </div>
+                <div className="text-xs opacity-70 mt-1 text-right">
+                  {formatTimestamp(message.timestamp)}
+                </div>
               </div>
+              
+              {message.role === 'user' && (
+                <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center flex-shrink-0 self-end">
+                  <User className="h-5 w-5 text-white" />
+                </div>
+              )}
             </div>
           ))
         )}
         
         {isLoading && (
-          <div className="flex gap-3 mx-auto max-w-3xl animate-slide-up">
-            <div className="flex-shrink-0 pt-1">
-              <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                <Bot className="h-5 w-5 text-white" />
-              </div>
+          <div className="flex gap-3 justify-start animate-slide-up">
+            <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 self-end">
+              <img 
+                src="/lovable-uploads/9b64eb18-4ec7-4e76-835b-ea19155a6999.png" 
+                className="w-full h-full object-cover"
+                alt="Assistant avatar"
+              />
             </div>
             
-            <div className="flex-1 space-y-1">
-              <div className="font-medium">Assistant</div>
-              <div className="h-6 w-12 bg-muted rounded animate-pulse-subtle"></div>
+            <div className="frendi-bubble-assistant">
+              <div className="h-6 w-12 bg-primary-foreground/20 rounded animate-pulse-subtle"></div>
             </div>
           </div>
         )}
@@ -169,30 +167,28 @@ export function ChatInterface({ conversation, onUpdateConversation }: ChatInterf
         <div ref={messagesEndRef} />
       </div>
       
-      <div className="border-t p-4">
-        <div className="mx-auto max-w-3xl">
-          <div className="relative">
-            <Textarea
-              ref={inputRef}
-              value={inputValue}
-              onChange={handleInputChange}
-              onKeyDown={handleKeyDown}
-              placeholder="Type your message..."
-              className="resize-none pr-12 min-h-[80px] max-h-[320px] neural-morphism border-none"
-              disabled={isLoading}
-            />
-            <Button
-              size="icon"
-              className={cn(
-                "absolute right-3 bottom-3 rounded-full transition-opacity",
-                !inputValue.trim() && "opacity-70"
-              )}
-              onClick={handleSendMessage}
-              disabled={!inputValue.trim() || isLoading}
-            >
-              <Send className="h-4 w-4" />
-            </Button>
-          </div>
+      <div className="border-t p-4 bg-card">
+        <div className="flex items-center rounded-full bg-secondary px-4 py-2">
+          <Textarea
+            ref={inputRef}
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            placeholder="Type your message..."
+            className="resize-none border-none bg-transparent min-h-[20px] max-h-[320px] focus-visible:ring-0 focus-visible:ring-offset-0 p-0"
+            disabled={isLoading}
+          />
+          <Button
+            size="icon"
+            className={cn(
+              "rounded-full ml-2 bg-primary text-primary-foreground",
+              !inputValue.trim() && "opacity-70"
+            )}
+            onClick={handleSendMessage}
+            disabled={!inputValue.trim() || isLoading}
+          >
+            <Send className="h-4 w-4" />
+          </Button>
         </div>
       </div>
     </div>
