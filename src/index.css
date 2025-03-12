@@ -5,6 +5,45 @@
 
 @layer base {
   :root {
+    --background: 0 0% 98%;
+    --foreground: 220 20% 16%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 16%;
+
+    --primary: 150 50% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 220 20% 16%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 220 10% 56%;
+
+    --accent: 150 50% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 150 50% 50%;
+    
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 20% 16%;
+    --sidebar-primary: 150 50% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 96%;
+    --sidebar-accent-foreground: 220 20% 16%;
+    --sidebar-border: 220 14% 90%;
+    --sidebar-ring: 150 50% 50%;
+  }
+
+  .dark {
     --background: 220 20% 12%;
     --foreground: 210 40% 98%;
 
@@ -42,47 +81,6 @@
     --sidebar-border: 220 20% 24%;
     --sidebar-ring: 150 50% 70%;
   }
-
-  .light {
-    --background: 210 40% 98%;
-    --foreground: 220 20% 16%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 220 20% 16%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 16%;
-
-    --primary: 150 50% 70%;
-    --primary-foreground: 220 20% 12%;
-
-    --secondary: 220 16% 96%;
-    --secondary-foreground: 220 20% 16%;
-
-    --muted: 220 16% 96%;
-    --muted-foreground: 220 10% 56%;
-
-    --accent: 150 50% 70%;
-    --accent-foreground: 220 20% 12%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 14% 92%;
-    --input: 220 14% 92%;
-    --ring: 150 50% 70%;
-
-    --radius: 0.8rem;
-
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 20% 16%;
-    --sidebar-primary: 150 50% 70%;
-    --sidebar-primary-foreground: 220 20% 12%;
-    --sidebar-accent: 220 16% 96%;
-    --sidebar-accent-foreground: 220 20% 16%;
-    --sidebar-border: 220 14% 92%;
-    --sidebar-ring: 150 50% 70%;
-  }
 }
 
 @layer base {
@@ -106,10 +104,10 @@
   }
   
   .frendi-bubble-user {
-    @apply bg-gray-800 text-white rounded-2xl p-4 max-w-[85%];
+    @apply bg-gray-100 text-gray-800 rounded-2xl p-4 max-w-[85%] border border-gray-200 shadow-sm;
   }
   
   .frendi-bubble-assistant {
-    @apply bg-primary text-primary-foreground rounded-2xl p-4 max-w-[85%];
+    @apply bg-primary text-primary-foreground rounded-2xl p-4 max-w-[85%] shadow-sm;
   }
 }
